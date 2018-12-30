@@ -6,6 +6,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import 'typeface-roboto'
 import Header from './header'
 import './layout.css'
+import 'rc-slider/assets/index.css'
 
 const Layout = ({ children, noContainer }) => (
   <StaticQuery
