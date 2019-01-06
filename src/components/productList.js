@@ -19,6 +19,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 
+import 'rc-slider/assets/index.css'
+
 let marks = {
   0: '€ 0',
   100: '€ 100',

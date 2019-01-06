@@ -9,7 +9,6 @@ import Badge from '@material-ui/core/Badge'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import { fade } from '@material-ui/core/styles/colorManipulator'
-import { withStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import ShoppingCart from '@material-ui/icons/ShoppingCart'
@@ -19,6 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert'
 import { CartHasQty } from 'react-snipcart'
 import { CartQty } from 'react-snipcart'
 import { Link } from 'gatsby'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {

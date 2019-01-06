@@ -21,7 +21,7 @@ export default function Template({
   const { href } = location
   const product = { id, name, url: href, price, image, description: excerpt }
   return (
-    <Layout>
+    <Layout classPrefix="pr">
       <Grid container spacing={24} style={{ marginTop: '1em', width: '100%' }}>
         <Grid item xs={3}>
           <img src={image} />

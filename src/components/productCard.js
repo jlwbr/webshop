@@ -1,5 +1,4 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -8,35 +7,37 @@ import Button from '@material-ui/core/Button'
 import { AddToCart } from 'react-snipcart'
 import { Link } from 'gatsby'
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    margin: 'auto',
-  },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-  margin: {},
-})
-
 const ProductCard = ({ classes, product }) => (
-  <div className={classes.root}>
-    <Paper className={classes.paper}>
+  <div
+    style={{
+      flexGrow: 1,
+    }}
+  >
+    <Paper
+      style={{
+        padding: 15,
+        margin: 'auto',
+      }}
+    >
       <Grid container justify="center" spacing={16}>
         <Grid item>
-          <ButtonBase className={classes.image}>
+          <ButtonBase
+            style={{
+              width: 128,
+              height: 128,
+            }}
+          >
             <Link to={product.url}>
-              <img className={classes.img} alt="complex" src={product.image} />
+              <img
+                style={{
+                  margin: 'auto',
+                  display: 'block',
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                }}
+                alt="complex"
+                src={product.image}
+              />
             </Link>
           </ButtonBase>
         </Grid>
@@ -57,12 +58,7 @@ const ProductCard = ({ classes, product }) => (
               </Link>
             </Grid>
             <Grid item>
-              <Button
-                variant="outlined"
-                color="primary"
-                className={classes.margin}
-                size="small"
-              >
+              <Button variant="outlined" color="primary" size="small">
                 <AddToCart data={product}>In winkelwagen</AddToCart>
               </Button>
             </Grid>
@@ -76,4 +72,4 @@ const ProductCard = ({ classes, product }) => (
   </div>
 )
 
-export default withStyles(styles)(ProductCard)
+export default ProductCard

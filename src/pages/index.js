@@ -7,7 +7,7 @@ import ProductList from '../components/productList'
 
 /* eslint-disable */
 const IndexPage = ({ data }) => (
-  <Layout noContainer>
+  <Layout noContainer classPrefix="in">
     <Carousel
       showArrows={true}
       autoPlay
