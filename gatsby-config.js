@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Smart Home',
+    title: 'Webshop',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
