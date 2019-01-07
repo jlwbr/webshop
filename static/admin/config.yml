@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - label: 'Producten'
+    name: 'products'
+    folder: 'src/content/products'
+    create: true
+    fields:
+      - { label: 'type', name: 'type', widget: 'hidden', default: 'product' }
+      - { label: 'ID', name: 'id', widget: 'string' }
+      - { label: 'Naam', name: 'name', widget: 'string' }
+      - { label: 'Prijs', name: 'price', widget: 'number' }
+      - { label: 'Afbeelding', name: 'image', widget: 'image' }
+      - { label: 'Review', name: 'review', widget: 'list' }
+      - { label: 'Beschrijving', name: 'body', widget: 'markdown' }
