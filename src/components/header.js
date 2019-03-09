@@ -17,7 +17,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { CartHasQty } from 'react-snipcart'
 import { CartQty } from 'react-snipcart'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
@@ -158,13 +158,7 @@ class Header extends React.Component {
               color="inherit"
               noWrap
             >
-              <Link
-                to="/"
-                style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                }}
-              >
+              <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
                 {siteTitle}
               </Link>
             </Typography>
@@ -175,6 +169,12 @@ class Header extends React.Component {
               <InputBase
                 placeholder="Zoek…"
                 classes={{ root: classes.inputRoot, input: classes.inputInput }}
+                defaultValue={this.props.searchValue}
+                onKeyPress={event => {
+                  if (event.key === 'Enter') {
+                    navigate('/search/?q=' + event.target.value)
+                  }
+                }}
               />
             </div>
             <div className={classes.grow} />

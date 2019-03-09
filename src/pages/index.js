@@ -42,7 +42,22 @@ const IndexPage = ({ data }) => (
         paddingTop: 0,
       }}
     >
-      <ProductList products={data} />
+      <ProductList
+        products={data.allMarkdownRemark.edges.map((node, i) => {
+          const { id, name, price, image } = node.node.frontmatter
+          const { excerpt, fields } = node.node
+          const { slug } = fields
+          const product = {
+            id,
+            name,
+            url: '/p' + slug,
+            price,
+            image,
+            description: excerpt,
+          }
+          return product
+        })}
+      />
     </div>
   </Layout>
 )

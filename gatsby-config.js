@@ -19,6 +19,34 @@ module.exports = {
         name: 'products',
       },
     },
+    {
+      resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
+      options: {
+        // Fields to index
+        fields: [
+          'id',
+          'name',
+          'url',
+          'price',
+          'image',
+          'description',
+          'review',
+        ],
+        // How to resolve each field's value for a supported node type
+        resolvers: {
+          // For any node of type MarkdownRemark, list how to resolve the fields' values
+          MarkdownRemark: {
+            id: node => node.frontmatter.id,
+            name: node => node.frontmatter.name,
+            url: node => '/p' + node.fields.slug,
+            price: node => node.frontmatter.price,
+            image: node => node.frontmatter.image,
+            description: node => node.excerpt,
+            review: node => node.frontmatter.review,
+          },
+        },
+      },
+    },
     'gatsby-transformer-remark',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline

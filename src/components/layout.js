@@ -9,7 +9,7 @@ import { install } from '@material-ui/styles'
 
 install()
 
-const Layout = ({ children, noContainer, classPrefix }) => {
+const Layout = ({ children, noContainer, searchValue, classPrefix }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -66,7 +66,10 @@ const Layout = ({ children, noContainer, classPrefix }) => {
           >
             <html lang="en" />
           </Helmet>
-          <Header siteTitle={data.site.siteMetadata.title} />
+          <Header
+            siteTitle={data.site.siteMetadata.title}
+            searchValue={searchValue}
+          />
           {!noContainer ? (
             <div
               style={{

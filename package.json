@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@andrew-codes/gatsby-plugin-elasticlunr-search": "^1.0.4",
     "@material-ui/core": "^3.6.0",
     "@material-ui/icons": "^3.0.1",
     "@material-ui/styles": "^3.0.0-alpha.6",
@@ -29,6 +30,9 @@
     "react-snipcart": "^0.1.6",
     "styled-components": "^4.1.3",
     "typeface-roboto": "^0.0.54"
+  },
+  "resolutions": {
+    "graphql": "0.13.2"
   },
   "keywords": [
     "gatsby"
