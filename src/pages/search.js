@@ -65,17 +65,19 @@ export default class Search extends React.Component {
     this.index ? this.index : Index.load(this.props.data.siteSearchIndex.index) // Create an elastic lunr index and hydrate with graphql query results
 
   search = () => {
-    const url = this.props.location.search.split('?q=')[1].split('&')
-    const query = url[0]
-    this.index = this.getOrCreateIndex()
-    console.log(query)
-    this.setState({
-      query,
-      // Query the index with search string to get an [] of IDs
-      results: this.index
-        .search(query)
-        // Map over each ID and return the full document
-        .map(({ ref }) => this.index.documentStore.getDoc(ref)),
-    })
+    if (this.props.location.search) {
+      const url = this.props.location.search.split('?q=')[1].split('&')
+      const query = url[0]
+      this.index = this.getOrCreateIndex()
+      console.log(query)
+      this.setState({
+        query,
+        // Query the index with search string to get an [] of IDs
+        results: this.index
+          .search(query)
+          // Map over each ID and return the full document
+          .map(({ ref }) => this.index.documentStore.getDoc(ref)),
+      })
+    }
   }
 }
