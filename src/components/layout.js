@@ -59,12 +59,12 @@ const Layout = ({ children, noContainer, searchValue, classPrefix }) => {
                 url: '',
                 id: 'snipcart',
                 'data-api-key':
-                  'YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0',
+                  'MTg4MjdjMTUtYTk1NC00NjM1LTgzNDAtNTE1NzQwMjQ3NDY2NjM2Nzg5MzIxOTM0NDM5Nzk5',
                 src: 'https://cdn.snipcart.com/scripts/2.0/snipcart.js',
               },
             ]}
           >
-            <html lang="en" />
+            <html lang="nl" />
           </Helmet>
           <Header
             siteTitle={data.site.siteMetadata.title}

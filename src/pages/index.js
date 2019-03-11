@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Layout from '../components/layout'
 import ProductList from '../components/productList'
+import banner from '../images/Banner_SH.png'
 
 /* eslint-disable */
 const IndexPage = ({ data }) => (
@@ -16,22 +17,7 @@ const IndexPage = ({ data }) => (
       showThumbs={false}
     >
       <div>
-        <img src="https://via.placeholder.com/1080x400" />
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/1080x400" />
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/1080x400" />
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/1080x400" />
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/1080x400" />
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/1080x400" />
+        <img src={banner} />
       </div>
     </Carousel>
     <div
@@ -44,8 +30,8 @@ const IndexPage = ({ data }) => (
     >
       <ProductList
         products={data.allMarkdownRemark.edges.map((node, i) => {
-          const { id, name, price, image } = node.node.frontmatter
-          const { excerpt, fields } = node.node
+          const { id, name, price, image, description } = node.node.frontmatter
+          const { fields } = node.node
           const { slug } = fields
           const product = {
             id,
@@ -53,7 +39,7 @@ const IndexPage = ({ data }) => (
             url: '/p' + slug,
             price,
             image,
-            description: excerpt,
+            description,
           }
           return product
         })}
@@ -70,7 +56,6 @@ export const query = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 40)
           fields {
             slug
           }

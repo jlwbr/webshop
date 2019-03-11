@@ -54,7 +54,6 @@ const ProductCard = ({ classes, product }) => (
                 <Typography gutterBottom variant="subtitle1">
                   {product.name}
                 </Typography>
-                <Typography gutterBottom>{product.description}</Typography>
               </Link>
             </Grid>
             <Grid item>

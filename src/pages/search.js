@@ -16,7 +16,6 @@ export const query = graphql`
     allMarkdownRemark(limit: 1000) {
       edges {
         node {
-          excerpt(pruneLength: 40)
           fields {
             slug
           }

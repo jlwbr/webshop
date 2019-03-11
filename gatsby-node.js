@@ -63,9 +63,9 @@ exports.createPages = ({ graphql, actions }) => {
                 slug: page.node.fields.slug,
               },
             })
-            page.node.frontmatter.filters.forEach(filter => {
-              console.log(updateFilter(filter[0], filter[1]))
-            })
+            // page.node.frontmatter.filters.forEach(filter => {
+            //   console.log(updateFilter(filter[0], filter[1]))
+            // })
           }
         })
       })

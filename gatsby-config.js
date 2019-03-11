@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Webshop',
+    title: 'SmartHome',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -23,15 +23,7 @@ module.exports = {
       resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
       options: {
         // Fields to index
-        fields: [
-          'id',
-          'name',
-          'url',
-          'price',
-          'image',
-          'description',
-          'review',
-        ],
+        fields: ['id', 'name', 'url', 'price', 'image', 'review'],
         // How to resolve each field's value for a supported node type
         resolvers: {
           // For any node of type MarkdownRemark, list how to resolve the fields' values
@@ -41,7 +33,6 @@ module.exports = {
             url: node => '/p' + node.fields.slug,
             price: node => node.frontmatter.price,
             image: node => node.frontmatter.image,
-            description: node => node.excerpt,
             review: node => node.frontmatter.review,
           },
         },
