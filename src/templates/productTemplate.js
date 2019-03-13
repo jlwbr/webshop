@@ -90,7 +90,9 @@ export default function Template({
           </div>
           {inStock && (
             <Button variant="outlined" color="primary" size="small">
-              <AddToCart data={product}>In winkelwagen</AddToCart>
+              <AddToCart id="snipcart-add-item" data={product}>
+                In winkelwagen
+              </AddToCart>
             </Button>
           )}
           {!inStock && (
