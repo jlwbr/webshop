@@ -60,6 +60,7 @@ const Layout = ({ children, noContainer, searchValue, classPrefix }) => {
                 id: 'snipcart',
                 'data-api-key':
                   'MTg4MjdjMTUtYTk1NC00NjM1LTgzNDAtNTE1NzQwMjQ3NDY2NjM2Nzg5MzIxOTM0NDM5Nzk5',
+                'data-autopop': 'false',
                 src: 'https://cdn.snipcart.com/scripts/2.0/snipcart.js',
               },
             ]}

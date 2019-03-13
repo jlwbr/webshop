@@ -15,8 +15,6 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
-import { CartHasQty } from 'react-snipcart'
-import { CartQty } from 'react-snipcart'
 import { Link, navigate } from 'gatsby'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -94,6 +92,7 @@ class Header extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
+    CartAmount: undefined,
   }
 
   handleMenuClose = () => {
@@ -101,52 +100,10 @@ class Header extends React.Component {
     this.handleMobileMenuClose()
   }
 
-  handleMobileMenuOpen = event => {
-    this.setState({ mobileMoreAnchorEl: event.currentTarget })
-  }
-
-  handleMobileMenuClose = () => {
-    this.setState({ mobileMoreAnchorEl: null })
-  }
-
   render() {
     const { mobileMoreAnchorEl } = this.state
     const { classes } = this.props
     const { siteTitle } = this.props
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={this.handleMobileMenuClose}
-      >
-        <MenuItem>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <p>Messages</p>
-        </MenuItem>
-        <MenuItem>
-          <IconButton color="inherit">
-            <Badge badgeContent={11} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
-        <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
-    )
 
     return (
       <div className={classes.root}>
@@ -178,34 +135,21 @@ class Header extends React.Component {
               />
             </div>
             <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <CartHasQty>
-                <IconButton color="inherit">
-                  <Badge
-                    badgeContent={<CartQty />}
-                    color="secondary"
-                    className="snipcart-checkout"
-                  >
-                    <ShoppingCart />
-                  </Badge>
-                </IconButton>
-              </CartHasQty>
-              <IconButton color="inherit" className="snipcart-user-profile">
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-haspopup="true"
-                onClick={this.handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </div>
+            <IconButton
+              color="inherit"
+              onClick={() => {
+                if (window.Snipcart) {
+                  window.Snipcart.api.modal.show()
+                }
+              }}
+            >
+              <ShoppingCart />
+            </IconButton>
+            <IconButton color="inherit" className="snipcart-user-profile">
+              <AccountCircle />
+            </IconButton>
           </Toolbar>
         </AppBar>
-        {renderMobileMenu}
       </div>
     )
   }

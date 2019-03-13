@@ -7,7 +7,7 @@ import ProductList from '../components/productList'
 import banner from '../images/Banner_SH.png'
 
 /* eslint-disable */
-const IndexPage = ({ data }) => (
+const IndexPage = ({ data, location }) => (
   <Layout noContainer classPrefix="in">
     <Carousel
       showArrows={true}
@@ -36,7 +36,7 @@ const IndexPage = ({ data }) => (
           const product = {
             id,
             name,
-            url: '/p' + slug,
+            url: location.origin + '/p' + slug,
             price,
             image,
             description,

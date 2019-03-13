@@ -32,13 +32,16 @@ class productList extends React.Component {
     this.state = {
       open: false,
       filters: {
+        Categories: {},
         price: [0, 100],
       },
     }
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
     this.handleSliderChange = this.handleSliderChange.bind(this)
-    //this.filterProducts = this.filterProducts.bind(this)
+    this.getPrices = this.getPrices.bind(this)
+    this.getCategories = this.getCategories.bind(this)
+    this.filterPrices = this.filterPrices.bind(this)
   }
 
   handleSliderChange = name => value => {
@@ -47,7 +50,10 @@ class productList extends React.Component {
 
   handleCheckboxChange = name => event => {
     this.setState({
-      filters: { ...this.state.filters, [name]: event.target.checked },
+      filters: {
+        ...this.state.filters.Categories,
+        [name]: event.target.checked,
+      },
     })
   }
 
@@ -59,52 +65,55 @@ class productList extends React.Component {
     this.setState({ open: false })
   }
 
-  // filterProducts = node => {
-  //   const products = this.props.products.allMarkdownRemark.edges
-  //   const product = node.node.frontmatter
-  //   const filters = this.state.filters
-  //   let type = undefined
-  //   let value = undefined
-  //   let min = 0
-  //   let max = 100
+  getPrices = () => {
+    let prices = []
+    for (let item in this.props.products) {
+      prices.push(this.props.products[item].price)
+    }
+    console.log('prices:', prices)
+    marks = {
+      0: '€0',
+      25: '€' + Math.round(Math.max(...prices) * 0.25),
+      50: '€' + Math.round(Math.max(...prices) * 0.5),
+      75: '€' + Math.round(Math.max(...prices) * 0.75),
+      100: '€' + Math.round(Math.max(...prices)),
+    }
+    return prices
+  }
 
-  //   for (var filter in filters) {
-  //     if (filters.hasOwnProperty(filter)) {
-  //       if (typeof filters[filter] === 'object') {
-  //         type = filter
-  //         min = filters[filter][0]
-  //         max = filters[filter][1]
-  //       } else if (typeof filters[filter] === 'boolean') {
-  //       }
-  //     }
-  //   }
-  //   switch (type) {
-  //     case 'price':
-  //       let prices = []
+  getCategories = () => {
+    for (let item in this.props.products) {
+      const category = this.props.products[item].categories
 
-  //       for (var item in products) {
-  //         prices.push(products[item].node.frontmatter.price)
-  //       }
+      if (!this.state.filters.Categories[category]) {
+        this.setState({
+          filters: {
+            ...this.state.filters.Categories,
+            [category]: true,
+          },
+        })
+      }
+    }
+  }
 
-  //       let highest = Math.max(...prices)
-  //       min = highest * (min / 100)
-  //       max = highest * (max / 100)
+  filterPrices = node => {
+    const prices = this.getPrices()
+    const highest = Math.max(...prices)
+    let min = this.state.filters.price[0]
+    let max = this.state.filters.price[1]
 
-  //       marks = { 0: '€0', 100: '€' + Math.max(...prices) }
-
-  //       return product.price >= min && product.price <= max
-
-  //     default:
-  //       return true
-  //   }
-  // }
+    min = highest * (min / 100)
+    max = highest * (max / 100)
+    return node.price >= min && node.price <= max
+  }
 
   render() {
     if (!this.props.products) {
-      return null
+      return undefined
     } else {
-      const products = this.props.products //.allMarkdownRemark.edges
-      const FilteredProducts = products //.filter(this.filterProducts)
+      const products = this.props.products
+      const FilteredProducts = products.filter(this.filterPrices)
+      console.log('filter:', FilteredProducts)
       return (
         <div style={{ marginTop: '1.5em' }}>
           <Dialog fullScreen open={this.state.open} onClose={this.handleClose}>
@@ -202,23 +211,6 @@ class productList extends React.Component {
                 </ExpansionPanel>
                 <ExpansionPanel>
                   <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography>Beoordeling</Typography>
-                  </ExpansionPanelSummary>
-                  <ExpansionPanelDetails>
-                    <div style={{ width: 400, marginBottom: '0.5em' }}>
-                      <Slider.Range
-                        min={0}
-                        marks={{ 0: 1, 25: 2, 50: 3, 75: 4, 100: 5 }}
-                        step={null}
-                        defaultValue={[0, 100]}
-                        value={this.state.filters.review}
-                        onChange={this.handleSliderChange('review')}
-                      />
-                    </div>
-                  </ExpansionPanelDetails>
-                </ExpansionPanel>
-                <ExpansionPanel>
-                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography>Categorie</Typography>
                   </ExpansionPanelSummary>
                   <ExpansionPanelDetails>
@@ -254,8 +246,8 @@ class productList extends React.Component {
               <Grid container spacing={24}>
                 {FilteredProducts.map((node, i) => {
                   return (
-                    <Grid item md={5}>
-                      <ProductCard product={node} key={i} />
+                    <Grid item md={5} key={i}>
+                      <ProductCard product={node} />
                     </Grid>
                   )
                 })}

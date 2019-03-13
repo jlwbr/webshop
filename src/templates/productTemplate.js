@@ -117,19 +117,39 @@ export default function Template({
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Specificaties</TableCell>
-                  <TableCell align="right" />
+                  <TableCell>
+                    <h1>Specificaties</h1>
+                  </TableCell>
+                  <TableCell align="center" />
                 </TableRow>
               </TableHead>
               <TableBody>
-                {specifications.map((row, i) => (
-                  <TableRow key={i}>
-                    <TableCell component="th" scope="row">
-                      {row[0]}
-                    </TableCell>
-                    <TableCell align="right">{row[1]}</TableCell>
-                  </TableRow>
-                ))}
+                {specifications &&
+                  specifications.map((row, i) => (
+                    <TableRow key={i}>
+                      <TableCell component="th" scope="row">
+                        {row[0]}
+                      </TableCell>
+                      <TableCell align="right">{row[1]}</TableCell>
+                    </TableRow>
+                  ))}
+                {!specifications && (
+                  <center style={{ padding: '1em 0' }}>
+                    <p
+                      style={{
+                        border: '1px',
+                        borderStyle: 'solid',
+                        borderColor: '#d12c2a',
+                        padding: '0 .5em',
+                        marginBottom: '.25em',
+                        color: '#d12c2a',
+                        display: 'inline-block',
+                      }}
+                    >
+                      Geen specificaties gevonden!
+                    </p>
+                  </center>
+                )}
               </TableBody>
             </Table>
           </TabContainer>
