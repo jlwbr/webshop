@@ -30,7 +30,7 @@ module.exports = {
           MarkdownRemark: {
             id: node => node.frontmatter.id,
             name: node => node.frontmatter.name,
-            url: node => '/p' + node.fields.slug,
+            url: () => '/',
             price: node => node.frontmatter.price,
             image: node => node.frontmatter.image,
             review: node => node.frontmatter.review,

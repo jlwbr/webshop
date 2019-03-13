@@ -31,12 +31,10 @@ const IndexPage = ({ data, location }) => (
       <ProductList
         products={data.allMarkdownRemark.edges.map((node, i) => {
           const { id, name, price, image, description } = node.node.frontmatter
-          const { fields } = node.node
-          const { slug } = fields
           const product = {
             id,
             name,
-            url: location.origin + '/p' + slug,
+            url: location.origin,
             price,
             image,
             description,
