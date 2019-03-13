@@ -32,7 +32,7 @@ export default class addToCart extends React.Component {
       <div onClick={this.addToCart}>
         {this.props.children}
         <div
-          class="snipcart-add-item"
+          className="snipcart-add-item"
           {...dataAttrs}
           style={{ display: 'none' }}
         />
