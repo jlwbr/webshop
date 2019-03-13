@@ -40,8 +40,7 @@ export default function Template({
     description,
     inStock,
   } = frontmatter
-  const { href } = location
-  const product = { id, name, url: href, price, image, description }
+  const product = { id, name, url: '/', price, image, description }
   const [value, setValue] = React.useState(0)
 
   function handleChange(event, newValue) {
