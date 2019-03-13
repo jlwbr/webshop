@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Grid from '@material-ui/core/Grid'
-import { AddToCart } from 'react-snipcart'
+import AddToCart from '../components/AddToCart'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Tabs from '@material-ui/core/Tabs'
@@ -90,9 +90,7 @@ export default function Template({
           </div>
           {inStock && (
             <Button variant="outlined" color="primary" size="small">
-              <AddToCart id="snipcart-add-item" data={product}>
-                In winkelwagen
-              </AddToCart>
+              <AddToCart data={product}>In winkelwagen</AddToCart>
             </Button>
           )}
           {!inStock && (

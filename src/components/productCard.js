@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { AddToCart } from 'react-snipcart'
+import AddToCart from '../components/AddToCart'
 import { Link } from 'gatsby'
 
 const ProductCard = ({ classes, product }) => (
