@@ -57,7 +57,6 @@ const ProductCard = ({ classes, product }) => (
               </Link>
             </Grid>
             <Grid item>
-              <Button variant="outlined" color="primary" size="small">
                 <AddToCart
                   data={{
                     id: product.id,
@@ -67,10 +66,7 @@ const ProductCard = ({ classes, product }) => (
                     image: product.image,
                     description: product.description,
                   }}
-                >
-                  In winkelwagen
-                </AddToCart>
-              </Button>
+                />
             </Grid>
           </Grid>
           <Grid item>

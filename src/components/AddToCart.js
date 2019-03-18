@@ -1,42 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Button from '@material-ui/core/Button'
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Typography from '@material-ui/core/Typography';
 
-export default class addToCart extends React.Component {
-  constructor(props) {
-    super(props)
-    this.addToCart = this.addToCart.bind(this)
-  }
-  addToCart(e) {
-    if (window.Snipcart) {
-      window.Snipcart.api.items
-        .add(
-          Object.assign(
-            {
-              autopop: false,
-            },
-            this.props.data
-          )
-        )
-        .then(item => {
-          if (this.props.data.openCart) {
-            window.Snipcart.api.modal.show()
-          }
-        })
-    }
-  }
-  render() {
+var BuyButton = React.memo(({data}) => {
     let dataAttrs = {}
-    for (let i in this.props.data) {
-      dataAttrs[`data-${i}`] = this.props.data[i]
+    for (let i in data) {
+      dataAttrs[`data-item-${i}`] = data[i]
     }
+
     return (
-      <div onClick={this.addToCart}>
-        {this.props.children}
-        <div
-          className="snipcart-add-item"
-          {...dataAttrs}
-          style={{ display: 'none' }}
-        />
-      </div>
+        <Button variant="outlined" color="primary" size="small">
+            <Typography
+            variant="button"
+            style={{
+            color: '#3f51b5',
+            textDecoration: 'none'
+            }}
+            id="buyButton"
+            href='#'
+            className='snipcart-add-item buyBtn'
+            {...dataAttrs}
+            >
+            In winkelwagen
+            </Typography>
+        </Button>
     )
-  }
-}
+})
+
+export default BuyButton;
