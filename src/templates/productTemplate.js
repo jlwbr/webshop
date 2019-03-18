@@ -92,7 +92,7 @@ export default function Template({
             <AddToCart data={product} />
           )}
           {!inStock && (
-            <AddToCart data={product} />
+            <AddToCart data={product} disabled />
           )}
         </Grid>
       </Grid>

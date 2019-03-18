@@ -3,18 +3,18 @@ import Button from '@material-ui/core/Button'
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
-var BuyButton = React.memo(({data}) => {
+var BuyButton = React.memo(({data, disabled}) => {
     let dataAttrs = {}
     for (let i in data) {
       dataAttrs[`data-item-${i}`] = data[i]
     }
 
     return (
-        <Button variant="outlined" color="primary" size="small">
+        <Button variant="outlined" disabled={disabled} color="primary" size="small">
             <Typography
             variant="button"
             style={{
-            color: '#3f51b5',
+            color: 'inherit',
             textDecoration: 'none'
             }}
             id="buyButton"
